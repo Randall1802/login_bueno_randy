@@ -109,10 +109,11 @@ class _LoginForm extends StatelessWidget {
                 ElevatedButton(
                   onPressed: loginForm.isLoading ? null : () async {
                     final authService = Provider.of<AuthServices>(context, listen: false);
-                    if(!loginForm.isValidForm()) return;
+                    //if(!loginForm.isValidForm()) return;
 
                     final String? errorMessage = await authService.login(
-                      loginForm.email, loginForm.password
+                      //loginForm.email, loginForm.password
+                      _emailController.text, _passwordController.text
                     );
 
                     if(errorMessage == null){
@@ -125,7 +126,7 @@ class _LoginForm extends StatelessWidget {
                   }, 
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 255, 244, 244)
+                      Color.fromARGB(255, 181, 184, 187)
                     )
                   ),
                   child: const Text(
@@ -147,7 +148,7 @@ class _LoginForm extends StatelessWidget {
                     )
                   ),
                   onPressed: (){
-                    Navigator.pushReplacementNamed(context, 'Registrar', arguments: '');
+                    Navigator.pushReplacementNamed(context, 'register', arguments: '');
                   },
                   child: const Text(
                     'Registrate',

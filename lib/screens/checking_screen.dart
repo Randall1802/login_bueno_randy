@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:login_bueno_randy/screens/login_screen.dart';
+import 'package:login_bueno_randy/screens/principal_screen.dart';
 import 'package:login_bueno_randy/services/auth_services.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +32,7 @@ class CheckAuthScreen extends StatelessWidget {
                   PageRouteBuilder(
                     //se pone a fuerza ya que son parametros que se piden pero que no usaremos
                     pageBuilder: (_,__,___) => 
-                    LoginPage(), 
+                    LoginScreen(), 
                     transitionDuration: Duration(seconds: 0)
                   ),
                 );
@@ -43,7 +45,7 @@ class CheckAuthScreen extends StatelessWidget {
                   context, 
                   PageRouteBuilder(
                     pageBuilder: (_,__,___) => 
-                    PrincipalScr(),
+                    PrincipalScreen(),
                     transitionDuration: Duration(seconds: 0)
                   )
                 );
