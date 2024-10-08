@@ -17,7 +17,7 @@ class RegistroScreen extends StatelessWidget{
     return Scaffold(
       body: DecoratedBox(
         decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 96, 100, 93)
+          color: Color.fromARGB(255, 192, 131, 51)
         ),
         child: Padding(
           padding: const EdgeInsets.all(16),

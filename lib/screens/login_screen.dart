@@ -37,7 +37,7 @@ class _LoginForm extends StatelessWidget {
       child: Scaffold(
         body: DecoratedBox(
           decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 216, 100, 179)
+            color: Color.fromARGB(255, 125, 100, 216)
           ),
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -134,7 +134,7 @@ class _LoginForm extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.w500,
-                      color: Color.fromARGB(255, 96, 100, 93)
+                      color: Color.fromARGB(255, 250, 253, 247)
                     )
                   )
                 ),
@@ -144,7 +144,7 @@ class _LoginForm extends StatelessWidget {
                 ElevatedButton(
                   style:  ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 255, 244, 244),
+                      Color.fromARGB(255, 173, 171, 171),
                     )
                   ),
                   onPressed: (){
