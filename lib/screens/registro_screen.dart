@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login_bueno_randy/providers/login_form_provider.dart';
+import 'package:login_bueno_randy/services/auth_services.dart';
+import 'package:login_bueno_randy/services/notifications_services.dart';
 import 'package:provider/provider.dart';
 
 class RegistroScreen extends StatelessWidget{
@@ -65,6 +67,46 @@ class RegistroScreen extends StatelessWidget{
                     color: Color.fromARGB(255, 255, 244, 244)
                   )
                 ),
+              ),
+              const SizedBox(
+                  height: 16,
+                ),
+                TextButton(
+                  onPressed: (){}, 
+                  child: const Text('Olvidaste tu contrasenia?', 
+                    style: TextStyle(color: Color.fromARGB(255, 255, 244, 244))
+                  ), 
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    final authService = Provider.of<AuthServices>(context, listen: false);
+
+                    final String? errorMessage = await authService.createUser(
+                      //loginForm.email, loginForm.password
+                      _emailController.text, _passwordController.text
+                    );
+
+                    if(errorMessage == null){
+                      Navigator.pushReplacementNamed(context, 'login');
+                    }
+                    else {
+                      NotificationsServices.showSnackbar(errorMessage);
+                    }
+                  }, 
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                    Color.fromARGB(255, 181, 184, 187
+                    )
+                  )
+                ),
+                child: const Text(
+                  'Registra tu usuario',
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromARGB(255, 250, 253, 247)
+                  )
+                )
               ),
               const SizedBox(
                 height: 16,

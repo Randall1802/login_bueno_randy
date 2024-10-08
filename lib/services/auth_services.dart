@@ -27,16 +27,35 @@ class AuthServices extends ChangeNotifier {
     );
 
     //decodificamos la respuesta
-    final Map<String, dynamic> decodeResp = json.decode(resp.body);
+    Map<dynamic, dynamic> decodeResp;
+    if(resp.body.contains('code')){
+      List<dynamic> decodeResp2 = json.decode(resp.body);
+      if (decodeResp2[0].containsKey('description')) {
+        print('Error en Password: ${decodeResp2[0]['description']}');
+        return decodeResp2[0]['description'];
+      }
+    }
+    decodeResp = json.decode(resp.body);
 
     //si en decoderesp tengo token, se que regresa el token. y lo escribimos en el disp movil.
     if(decodeResp.containsKey('token')){
       await storage.write(key: 'token', value: decodeResp['token']);
       return null;
     }
-    else{
-      decodeResp['error'];
-    }
+    else if (decodeResp.containsKey('errors')){
+      final errors = decodeResp['errors'];
+      if (errors.containsKey('Email')) {
+        print('Error en Email: ${errors['Email'][0]}');
+        return errors['Email'][0];
+      }
+      if (errors.containsKey('Password')) {
+        print('Error en Password: ${errors['Password'][0]}');
+        return errors['Password'][0];
+      }
+    } 
+    else {
+      return decodeResp['error'];
+    } 
   }
 
   Future<String?> login(String email, String password) async {
