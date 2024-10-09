@@ -101,6 +101,7 @@ class AuthServices extends ChangeNotifier {
 
   //esto es el logout
   Future logout() async {
+    //await storage.deleteAll();
     await storage.delete(key: 'token');
   }
 
